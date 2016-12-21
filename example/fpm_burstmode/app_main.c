@@ -42,6 +42,16 @@ ofp_init_global_t app_init_params; /**< global OFP init parms */
 
 #define PKT_BURST_SIZE OFP_PKT_RX_BURST_SIZE
 
+#define USE_APP_PREFETCH
+
+#ifdef USE_APP_PREFETCH
+#define PREFETCH_SHIFT 2
+static inline void prefetch(const void *ptr)
+{
+	__asm__ volatile("prfm pldl1keep, %a0\n" : : "p" (ptr));
+}
+#endif /* USE_APP_PREFETCH */
+
 static void *pkt_io_recv(void *arg)
 {
 	odp_packet_t pkt, pkt_tbl[PKT_BURST_SIZE];
@@ -73,6 +83,11 @@ static void *pkt_io_recv(void *arg)
 
 			for (pkt_idx = 0; pkt_idx < pkt_cnt; pkt_idx++) {
 				pkt = pkt_tbl[pkt_idx];
+
+#ifdef USE_APP_PREFETCH
+				if (pkt_idx < pkt_cnt - PREFETCH_SHIFT)
+					prefetch(odp_packet_data(pkt_tbl[pkt_idx + PREFETCH_SHIFT]));
+#endif /* USE_APP_PREFETCH */
 
 				ofp_packet_input(pkt, ODP_QUEUE_INVALID,
 						 ofp_eth_vlan_processing);
