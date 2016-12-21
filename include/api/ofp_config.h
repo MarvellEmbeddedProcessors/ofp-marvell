@@ -31,7 +31,7 @@
 /* Enable features */
 
 /**Enable PERFORMANCE measurements mode. Some validations are skipped.*/
-/* #define OFP_PERFORMANCE */
+#define OFP_PERFORMANCE
 
 
 /**Enable static socket configuration mode.
@@ -73,7 +73,7 @@
 	defined(OFP_PLAT_ODP_DPDK)
 # define SHM_PKT_POOL_NB_PKTS		10240
 #else /*OFP_CONFIG_DEFAULT*/
-# define SHM_PKT_POOL_NB_PKTS		512
+# define SHM_PKT_POOL_NB_PKTS		16384
 #endif /* OFP_CONFIG */
 
 /** Packet pool buffer size. */
@@ -129,14 +129,14 @@
 
 /**Maximum number of packets received at once in direct mode in
  * example applications - default value.*/
-#define OFP_PKT_RX_BURST_SIZE 16
+#define OFP_PKT_RX_BURST_SIZE 64
 
 /**Maximum number of events received at once in scheduling mode
  * in default_event_dispatcher().*/
-#define OFP_EVT_RX_BURST_SIZE 16
+#define OFP_EVT_RX_BURST_SIZE 512
 
 /**Number of packets sent at once (>= 1)   */
-#define OFP_PKT_TX_BURST_SIZE 1
+#define OFP_PKT_TX_BURST_SIZE 64
 
 #ifdef MTRIE
 /**Controls memory size for IPv4 MTRIE 16/8/8 data structure.
