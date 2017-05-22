@@ -31,8 +31,8 @@ struct ofp_timer_long_internal {
 	struct ofp_timer_internal tmo;
 };
 
-#define TIMER_POOL_SIZE	 (1024*1024) /* Timer pool size */
-#define TIMER_NUM_TIMERS	10000
+#define TIMER_POOL_SIZE	 (1024*128) /* Timer pool size */
+#define TIMER_NUM_TIMERS	1000
 #define TIMER_LONG_SHIFT	13
 #define TIMER_NUM_LONG_SLOTS    (1<<TIMER_LONG_SHIFT)
 #define TIMER_LONG_MASK	 (TIMER_NUM_LONG_SLOTS-1)

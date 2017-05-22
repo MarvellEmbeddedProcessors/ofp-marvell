@@ -73,7 +73,7 @@
 	defined(OFP_PLAT_ODP_DPDK)
 # define SHM_PKT_POOL_NB_PKTS		10240
 #else /*OFP_CONFIG_DEFAULT*/
-# define SHM_PKT_POOL_NB_PKTS		16384
+# define SHM_PKT_POOL_NB_PKTS		4096
 #endif /* OFP_CONFIG */
 
 /** Packet pool buffer size. */
@@ -107,12 +107,12 @@
 
 #else /*OFP_CONFIG_DEFAULT*/
 /**Maximum number of sockets. */
-# define OFP_NUM_SOCKETS_MAX 1024
+# define OFP_NUM_SOCKETS_MAX 512
 /**First socket number value. */
 # define OFP_SOCK_NUM_OFFSET 1024
 
 /**Maximum number of TCP PCBs. */
-# define OFP_NUM_PCB_TCP_MAX 2048
+# define OFP_NUM_PCB_TCP_MAX 1024
 #endif /* OFP_CONFIG*/
 
 /**Maximum number of fastpath interfaces used.
@@ -142,27 +142,27 @@
 /**Controls memory size for IPv4 MTRIE 16/8/8 data structure.
  * It defines the number of large tables (16) used to store routes.
  * MTRIE should be defined*/
-#define ROUTE4_MTRIE16_TABLE_NODES 8
+#define ROUTE4_MTRIE16_TABLE_NODES 4
 /**Controls memory size for IPv4 MTRIE 16/8/8 data structure.
  * It defines the number of small tables (8) used to store routes.
  * MTRIE should be defined*/
-#define ROUTE4_MTRIE8_TABLE_NODES 128
+#define ROUTE4_MTRIE8_TABLE_NODES 64
 /** Defines the maximum number of routes that are stored in the MTRIE.*/
-#define ROUTE4_RULE_LIST_SIZE 65536
+#define ROUTE4_RULE_LIST_SIZE 16384
 #else
 /**Controls memory size for IPv4 radix tree data structure.
  * It defines the number of radix tree nodes used to store routes.
  * MTRIE feature should not be defined*/
-#define ROUTE4_NODES 65536
+#define ROUTE4_NODES 16384
 #endif
 
 /**Controls memory size for IPv6 radix tree data structure.
  * It defines the number of radix tree nodes used to store routes.*/
-#define ROUTE6_NODES 65536
+#define ROUTE6_NODES 16384
 
 /**Arp entry table size. Controls memory size for arp entries.
  * Must be power of two */
-#define ARP_ENTRY_TABLE_SIZE 2048
+#define ARP_ENTRY_TABLE_SIZE 512
 /**Total number of arp entries that can be stored. */
 #define ARP_ENTRIES_SIZE (NUM_SETS * 4)
 /**Default ARP age interval (in seconds) */

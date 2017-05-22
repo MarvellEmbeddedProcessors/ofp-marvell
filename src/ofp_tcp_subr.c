@@ -166,7 +166,7 @@ static int	tcp_soreceive_stream = 0;
 OFP_SYSCTL_INT(_net_inet_tcp, OFP_OID_AUTO, soreceive_stream, OFP_CTLFLAG_RDTUN,
     &tcp_soreceive_stream, 0, "Using soreceive_stream for TCP sockets");
 
-#define OFP_SACK_HOLE_ZONE_NITEMS 65536  /* derived from ofp_tcp_sack_globalmaxholes */
+#define OFP_SACK_HOLE_ZONE_NITEMS 8196 /* derived from ofp_tcp_sack_globalmaxholes */
 
 VNET_DEFINE(struct hhook_head *, ofp_tcp_hhh[HHOOK_TCP_LAST+1]);
 
