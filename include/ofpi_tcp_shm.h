@@ -31,10 +31,12 @@ struct ofp_tcp_var_mem {
 #endif
 
 /* Target size of TCP PCB hash tables. Must be a power of two.*/
+/* Reduce TCP PCB hash tables size from 1024 to 512 */
 #define TCBHASHSIZE			512
 	struct inpcbhead	ofp_hashtbl[TCBHASHSIZE];
 	struct inpcbporthead	ofp_porthashtbl[TCBHASHSIZE];
 
+/* Reduce TCP SYNCACHE hash tables size from 1024 to 512 */
 #define TCP_SYNCACHE_HASHSIZE		512
 	struct syncache_head	syncache[TCP_SYNCACHE_HASHSIZE];
 

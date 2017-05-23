@@ -73,6 +73,7 @@
 	defined(OFP_PLAT_ODP_DPDK)
 # define SHM_PKT_POOL_NB_PKTS		10240
 #else /*OFP_CONFIG_DEFAULT*/
+/* Reduce packet pool size from 16K to 4K buffers */
 # define SHM_PKT_POOL_NB_PKTS		4096
 #endif /* OFP_CONFIG */
 
@@ -107,11 +108,13 @@
 
 #else /*OFP_CONFIG_DEFAULT*/
 /**Maximum number of sockets. */
+/* Reduce maximum number of sockets from 1024 to 512 */
 # define OFP_NUM_SOCKETS_MAX 512
 /**First socket number value. */
 # define OFP_SOCK_NUM_OFFSET 1024
 
 /**Maximum number of TCP PCBs. */
+/* Reduce maximum number of TCP PCBs from 2048 to 1024 */
 # define OFP_NUM_PCB_TCP_MAX 1024
 #endif /* OFP_CONFIG*/
 
@@ -142,26 +145,32 @@
 /**Controls memory size for IPv4 MTRIE 16/8/8 data structure.
  * It defines the number of large tables (16) used to store routes.
  * MTRIE should be defined*/
+/* Reduce number of large tables from 8 to 4 */
 #define ROUTE4_MTRIE16_TABLE_NODES 4
 /**Controls memory size for IPv4 MTRIE 16/8/8 data structure.
  * It defines the number of small tables (8) used to store routes.
  * MTRIE should be defined*/
+/* Reduce number of small tables from 128 to 64 */
 #define ROUTE4_MTRIE8_TABLE_NODES 64
 /** Defines the maximum number of routes that are stored in the MTRIE.*/
+/* Reduce maximum number of routes from 65536 to 16384 */
 #define ROUTE4_RULE_LIST_SIZE 16384
 #else
 /**Controls memory size for IPv4 radix tree data structure.
  * It defines the number of radix tree nodes used to store routes.
  * MTRIE feature should not be defined*/
+/* Reduce number of IPv4 radix tree nodes from 65536 to 16384 */
 #define ROUTE4_NODES 16384
 #endif
 
 /**Controls memory size for IPv6 radix tree data structure.
  * It defines the number of radix tree nodes used to store routes.*/
+/* Reduce number of IPv6 radix tree nodes from 65536 to 16384 */
 #define ROUTE6_NODES 16384
 
 /**Arp entry table size. Controls memory size for arp entries.
  * Must be power of two */
+/* Reduce Arp entry table size from 2048 to 512 */
 #define ARP_ENTRY_TABLE_SIZE 512
 /**Total number of arp entries that can be stored. */
 #define ARP_ENTRIES_SIZE (NUM_SETS * 4)
